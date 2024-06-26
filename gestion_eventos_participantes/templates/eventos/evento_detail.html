@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles del Evento{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Detalles del Evento</h1>
+    <div class="card">
+        <div class="card-header">
+            {{ object.nombre }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Descripción</h5>
+            <p class="card-text">{{ object.descripcion }}</p>
+            <h5 class="card-title">Fecha y Hora</h5>
+            <p class="card-text">{{ object.fecha }} a las {{ object.hora }}</p>
+            <h5 class="card-title">Ubicación</h5>
+            <p class="card-text">{{ object.ubicacion }}</p>
+            <h5 class="card-title">Participantes</h5>
+            <ul class="list-group">
+                {% for participante in object.participantes.all %}
+                    <li class="list-group-item">{{ participante.nombre }} {{ participante.apellido }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <a href="{% url 'evento-list' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+</div>
+{% endblock %}

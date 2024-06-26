@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Participante{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Participante</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nombre" class="form-label">Nombre:</label>
+            {{ form.nombre }}
+        </div>
+        <div class="mb-3">
+            <label for="id_apellido" class="form-label">Apellido:</label>
+            {{ form.apellido }}
+        </div>
+        <div class="mb-3">
+            <label for="id_documento" class="form-label">Documento:</label>
+            {{ form.documento }}
+        </div>
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Email:</label>
+            {{ form.email }}
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="id_estado" name="estado" {% if form.instance.estado %}checked{% endif %}>
+            <label class="form-check-label" for="id_estado">
+                Activo
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'participante-list' %}" class="btn btn-secondary mb-3">Volver a la lista de participantes</a>
+    </form>
+</div>
+
+<style>
+    /* Estilos CSS personalizados para mejorar la apariencia */
+    .container {
+        max-width: 600px;
+        margin: auto;
+        background-color: #f8f9fa;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .form-check-input {
+        margin-top: 0.3rem;
+    }
+
+    .btn-primary {
+        margin-right: 10px;
+    }
+
+    .btn-secondary {
+        margin-bottom: 10px;
+    }
+
+    .alert {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+

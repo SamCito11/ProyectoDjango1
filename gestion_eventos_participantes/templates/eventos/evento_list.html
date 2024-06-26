@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Eventos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Lista de Eventos</h1>
+    <a href="{% url 'evento-create' %}" class="btn btn-primary mb-3">Agregar Evento</a>
+    <ul class="list-group">
+        {% for evento in object_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <a href="{% url 'evento-detail' evento.pk %}">{{ evento.nombre }}</a>
+                </div>
+                <div class="btn-group" role="group" aria-label="Acciones">
+                    <a href="{% url 'evento-update' evento.pk %}" class="btn btn-primary btn-sm mx-2 btn-space">Editar</a>
+                    <a href="{% url 'evento-detail' evento.pk %}" class="btn btn-warning btn-sm mx-2 btn-space">Detalles</a>
+                    <form method="post" action="{% url 'evento-delete' evento.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm mx-2" onclick="return confirm('¿Estás seguro de que deseas eliminar este evento?')">Eliminar</button>
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul> <br>
+    <a href="../" class="btn btn-secondary mt-3">Volver al Inicio</a>
+</div>
+{% endblock %}
+

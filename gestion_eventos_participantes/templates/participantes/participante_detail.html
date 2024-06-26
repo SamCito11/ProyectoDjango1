@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalle de Participante: {{ object.nombre }} {{ object.apellido }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Detalle de Participante</h1>
+    <div class="card">
+        <div class="card-header">
+            {{ object.nombre }} {{ object.apellido }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Documento</h5>
+            <p class="card-text">{{ object.documento }}</p>
+            <h5 class="card-title">Email</h5>
+            <p class="card-text">{{ object.email }}</p>
+            <h5 class="card-title">Estado</h5>
+            <p class="card-text">{% if object.estado %}Activo{% else %}Inactivo{% endif %}</p>
+        </div>
+    </div>
+    <a href="{% url 'participante-list' %}" class="btn btn-secondary mt-3">Volver a la lista</a>
+</div>
+{% endblock %}

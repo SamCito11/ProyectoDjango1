@@ -1,0 +1,46 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .user-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+        }
+        .btn-container a.btn {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            <h1>Bienvenido, {{ user.username }}!</h1>
+            <p>Email: {{ user.email }}</p>
+            <p>Último inicio de sesión: {{ user.last_login }}</p>
+        </div>
+        <div class="btn-container">
+            <a href="{% url 'evento-list' %}" class="btn btn-primary">Ver Eventos</a>
+            <a href="{% url 'participante-list' %}" class="btn btn-primary">Ver Participantes</a>
+            <a href="{% url 'logout' %}" class="btn btn-secondary">Cerrar sesión</a>
+        </div>
+    </div>
+    <!-- Bootstrap JS (opcional, solo si necesitas funcionalidad de Bootstrap como modales) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
